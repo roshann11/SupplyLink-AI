@@ -12,3 +12,16 @@ class CompanyType(StrEnum):
     RETAILER = "retailer"
     DISTRIBUTOR = "distributor"
     WHOLESALER = "wholesaler"
+
+
+class RFQStatus(StrEnum):
+    DRAFT = "draft"
+    OPEN = "open"
+    CLOSED = "closed"
+    AWARDED = "awarded"
+
+
+class QuoteStatus(StrEnum):
+    PENDING = "pending"
+    ACCEPTED = "accepted"
+    REJECTED = "rejected"
