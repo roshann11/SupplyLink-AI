@@ -11,6 +11,11 @@ from app.domain.enums import UserRole
 from app.infrastructure.database.session import get_db
 from app.schemas.auth import UserResponse
 from app.services.auth_service import AuthService
+from app.services.company_service import CompanyService
+from app.services.product_service import ProductService
+from app.services.rfq_service import RFQService
+from app.services.message_service import MessageService
+from app.services.review_service import ReviewService
 
 security = HTTPBearer(auto_error=False)
 
@@ -52,3 +57,33 @@ def require_roles(*roles: UserRole):
         return current_user
 
     return _checker
+
+
+async def get_company_service(
+    db: Annotated[AsyncSession, Depends(get_db)],
+) -> CompanyService:
+    return CompanyService(db)
+
+
+async def get_product_service(
+    db: Annotated[AsyncSession, Depends(get_db)],
+) -> ProductService:
+    return ProductService(db)
+
+
+async def get_rfq_service(
+    db: Annotated[AsyncSession, Depends(get_db)],
+) -> RFQService:
+    return RFQService(db)
+
+
+async def get_message_service(
+    db: Annotated[AsyncSession, Depends(get_db)],
+) -> MessageService:
+    return MessageService(db)
+
+
+async def get_review_service(
+    db: Annotated[AsyncSession, Depends(get_db)],
+) -> ReviewService:
+    return ReviewService(db)
